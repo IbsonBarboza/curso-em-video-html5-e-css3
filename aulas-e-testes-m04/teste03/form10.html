@@ -12,7 +12,12 @@
     <form action="" method="get" autocomplete="on">
         <p>
             <label for="iano">Em que ano você nasceu? </label>
-            <input type="number" name="ano" id="iano" min="1900" max="2023" oninput="calcIdade()">
+            <input type="number" name="ano" id="iano" required min="1900" max="2023" oninput="calcIdade()">
+        </p>
+
+        <p>
+            <label for="imes">Em que mês você nasceu? </label>
+            <input type="number" name="mes" id="imes" required min="1" max="12" oninput="calcIdade()">
         </p>
 
         <p>
@@ -27,9 +32,24 @@
     </form>
 
     <script>
-        function calcIdade() {
+        /* function calcIdade() {
             let atual = new Date().getFullYear()
             iidade.innerHTML = Number(atual) - Number(iano.value)
+        }*/
+
+        function calcIdade() {
+            let ano_atual = new Date().getFullYear()
+            let mes_atual = new Date().getMonth()
+
+            let ano = document.getElementById('iano')
+            let mes = document.getElementById('imes')
+            let idade = document.getElementById('iidade') 
+
+            if (mes.value > mes_atual) {
+                idade.innerHTML = (Number(ano_atual) - Number(ano.value)) - 1
+            } else {
+                idade.innerHTML = Number(ano_atual) - Number(ano.value)
+            }
         }
     </script>
 </body>
